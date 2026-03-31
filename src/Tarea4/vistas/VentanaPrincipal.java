@@ -58,6 +58,10 @@ public class VentanaPrincipal extends JFrame {
         modeloTabla.addColumn("Usuario");
 
         tablaUsuarios = new JTable(modeloTabla);
+        
+        tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
+        tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(0);
+        tablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         scrollPane = new JScrollPane(tablaUsuarios);
         scrollPane.setBounds(40, 70, 700, 250);
