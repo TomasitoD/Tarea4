@@ -1,5 +1,6 @@
 package Tarea4.vistas;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
 
@@ -28,14 +29,24 @@ public class VentanaPrincipal extends JFrame {
 
     private UsuarioDAO usuarioDAO;
     
+    private final Color COLOR_FONDO = new Color(250, 251, 240);         // #fafbf0
+    private final Color COLOR_TITULO = new Color(29, 31, 38);           // #1d1f26
+    private final Color COLOR_LABEL = new Color(53, 63, 67);            // #353f43
+    private final Color COLOR_BOTON_PRINCIPAL = new Color(65, 93, 109); // #415d6d
+    private final Color COLOR_BOTON_SECUNDARIO = new Color(125, 108, 81); // #7d6c51
+    private final Color COLOR_BOTON_PELIGRO = new Color(255, 20, 20);    // #3c5f5c
+    private final Color COLOR_TABLA_HEADER = new Color(65, 93, 109);    // #415d6d
+    private final Color COLOR_TABLA_TEXTO = new Color(29, 31, 38);      // #1d1f26
+    
     public VentanaPrincipal() {
         usuarioDAO = new UsuarioDAO();
 
         setTitle("Usuarios Registrados");
-        setSize(800, 500);
+        setSize(860, 540);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        getContentPane().setBackground(COLOR_FONDO);
 
         iniciarComponentes();
         cargarUsuariosEnTabla();
@@ -46,6 +57,7 @@ public class VentanaPrincipal extends JFrame {
     private void iniciarComponentes() {
         lblTitulo = new JLabel("CLIENTES REGISTRADOS");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTitulo.setForeground(COLOR_TITULO);
         lblTitulo.setBounds(250, 20, 300, 30);
         add(lblTitulo);
 
@@ -58,29 +70,45 @@ public class VentanaPrincipal extends JFrame {
         modeloTabla.addColumn("Usuario");
 
         tablaUsuarios = new JTable(modeloTabla);
-        
+        tablaUsuarios.setRowHeight(28);
+        tablaUsuarios.setFont(new Font("Arial", Font.PLAIN, 12));
+        tablaUsuarios.setForeground(COLOR_TABLA_TEXTO);
+        tablaUsuarios.setSelectionBackground(new Color(224, 195, 111)); // #e0c36f
+        tablaUsuarios.setSelectionForeground(COLOR_TITULO);
+        tablaUsuarios.setGridColor(new Color(220, 220, 220));
+        tablaUsuarios.setShowVerticalLines(true);
+        tablaUsuarios.setShowHorizontalLines(true);
+
+        tablaUsuarios.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        tablaUsuarios.getTableHeader().setBackground(COLOR_TABLA_HEADER);
+        tablaUsuarios.getTableHeader().setForeground(Color.WHITE);
+
         tablaUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
         tablaUsuarios.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaUsuarios.getColumnModel().getColumn(0).setPreferredWidth(0);
 
         scrollPane = new JScrollPane(tablaUsuarios);
-        scrollPane.setBounds(40, 70, 700, 250);
+        scrollPane.setBounds(40, 75, 770, 290);
         add(scrollPane);
 
         btnNuevo = new JButton("Nuevo");
         btnNuevo.setBounds(40, 360, 120, 35);
+        estilizarBotonPrincipal(btnNuevo);
         add(btnNuevo);
 
         btnActualizar = new JButton("Actualizar");
         btnActualizar.setBounds(210, 360, 120, 35);
+        estilizarBotonSecundario(btnActualizar);
         add(btnActualizar);
 
         btnEliminar = new JButton("Eliminar");
         btnEliminar.setBounds(380, 360, 120, 35);
+        estilizarBotonPeligro(btnEliminar);
         add(btnEliminar);
 
         btnCerrarSesion = new JButton("Cerrar Sesion");
         btnCerrarSesion.setBounds(550, 360, 150, 35);
+        estilizarBotonSecundario(btnCerrarSesion);
         add(btnCerrarSesion);
 
         btnNuevo.addActionListener(e -> {
@@ -96,6 +124,30 @@ public class VentanaPrincipal extends JFrame {
         btnEliminar.addActionListener(e -> eliminarUsuario());
 
         btnActualizar.addActionListener(e -> actualizarUsuario());
+    }
+    
+    private void estilizarBotonPrincipal(JButton boton) {
+        boton.setBackground(COLOR_BOTON_PRINCIPAL);
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setBorderPainted(false);
+    }
+
+    private void estilizarBotonSecundario(JButton boton) {
+        boton.setBackground(COLOR_BOTON_SECUNDARIO);
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setBorderPainted(false);
+    }
+
+    private void estilizarBotonPeligro(JButton boton) {
+        boton.setBackground(COLOR_BOTON_PELIGRO);
+        boton.setForeground(Color.WHITE);
+        boton.setFocusPainted(false);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setBorderPainted(false);
     }
 
     public void cargarUsuariosEnTabla() {
