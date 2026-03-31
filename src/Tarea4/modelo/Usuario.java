@@ -1,4 +1,4 @@
-package Tarea4;
+package Tarea4.modelo;
 
 public class Usuario {
 
