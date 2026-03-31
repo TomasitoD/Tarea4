@@ -1,5 +1,7 @@
 package Tarea4.vistas;
 
-public class VentanaPrincipal {
+import javax.swing.JFrame;
+
+public class VentanaPrincipal extends JFrame {
 
 }

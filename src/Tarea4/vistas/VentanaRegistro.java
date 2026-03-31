@@ -1,5 +1,7 @@
 package Tarea4.vistas;
 
-public class VentanaRegistro {
+import javax.swing.JFrame;
+
+public class VentanaRegistro extends JFrame {
 
 }
