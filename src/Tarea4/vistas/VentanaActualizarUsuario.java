@@ -1,5 +1,12 @@
 package Tarea4.vistas;
 
-public class VentanaActualizarUsuario {
+import javax.swing.JFrame;
+import Tarea4.modelo.Usuario;
+
+public class VentanaActualizarUsuario extends JFrame{
+	
+	public VentanaActualizarUsuario(Usuario usuario){
+		
+	}
 
 }
