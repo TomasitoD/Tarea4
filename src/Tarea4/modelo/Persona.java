@@ -1,5 +1,7 @@
 package Tarea4.modelo;
 
+// Clase abstracta que guarda los datos comunes de una persona.
+// Se usa como base para que la clase Usuario herede estos atributos.
 public abstract class Persona {
     
     private String nombre;
@@ -49,9 +51,12 @@ public abstract class Persona {
         this.correo = correo;
     }
 
+    // Devuelve el nombre y apellido juntos en un solo texto.
     public String getNombreCompleto() {
         return nombre + " " + apellido;
     }
 
+    // Este metodo sera implementado por las clases hijas
+    // para mostrar la informacion de la forma que necesiten.
     public abstract String mostrarInformacion();
 }
